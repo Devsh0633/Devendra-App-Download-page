@@ -40,7 +40,9 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--bg-dark);
+    background-color: var(--bg-dark);
+    background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='20' y='30' font-size='24' fill='%23ffffff' opacity='0.03'%3E♠%3C/text%3E%3Ctext x='80' y='90' font-size='24' fill='%23ffffff' opacity='0.03'%3E♥%3C/text%3E%3C/svg%3E");
+    background-attachment: fixed;
     color: var(--text-primary);
     font-family: 'DM Sans', sans-serif;
     font-size: 16px;
@@ -150,6 +152,35 @@
     height: 400px;
     background: radial-gradient(ellipse, rgba(240,180,41,0.08) 0%, transparent 70%);
     pointer-events: none;
+  }
+  .hero-decor {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .hero-decor::before {
+    content: "🎰";
+    position: absolute;
+    font-size: clamp(150px, 20vw, 250px);
+    opacity: 0.04;
+    top: 5%;
+    left: -5%;
+    transform: rotate(-15deg);
+  }
+  .hero-decor::after {
+    content: "🎲";
+    position: absolute;
+    font-size: clamp(150px, 20vw, 250px);
+    opacity: 0.04;
+    bottom: -10%;
+    right: -5%;
+    transform: rotate(20deg);
+  }
+  .hero .container {
+    position: relative;
+    z-index: 1;
   }
   .hero-badge {
     display: inline-block;
@@ -407,11 +438,39 @@
     border: 1px solid rgba(240,180,41,0.25);
     border-radius: var(--radius-lg);
     padding: 40px 32px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner-content {
+    flex: 1;
+    z-index: 1;
+  }
+  .cta-banner-image {
+    flex-shrink: 0;
+    width: 280px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 1;
   }
   .cta-banner h2 { color: var(--text-primary); margin-bottom: 10px; }
   .cta-banner p { color: var(--text-secondary); margin-bottom: 24px; }
-  .cta-banner .btn { margin: 6px; }
+  .cta-banner .btn { margin: 6px 6px 6px 0; }
+  @media (max-width: 768px) {
+    .cta-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .cta-banner .btn { margin: 6px; }
+    .cta-banner-image { width: 100%; height: 200px; }
+  }
 
   /* ---- NOTICE ---- */
   .notice {
@@ -559,6 +618,7 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-decor"></div>
   <div class="container">
     <div class="hero-badge">🃏 Pakistan's #1 Real Money Gaming App 🃏</div>
     <h1>🎰 Download <span>Pak555</span> and Start Winning Today 💰</h1>
@@ -1098,10 +1158,13 @@
 
   <!-- CTA MIDDLE -->
   <div class="cta-banner" style="margin: 0 0 60px;">
-    <h2>Ready to Play and Win?</h2>
-    <p>Join thousands of players already winning real money on Pak555. Download free and get your welcome bonus today.</p>
-    <a href="#download" class="btn btn-gold">Download for Android</a>
-    <a href="#download" class="btn btn-outline">Get on iOS</a>
+    <div class="cta-banner-content">
+      <h2>Ready to Play and Win?</h2>
+      <p>Join thousands of players already winning real money on Pak555. Download free and get your welcome bonus today.</p>
+      <a href="#download" class="btn btn-gold">Download for Android</a>
+      <a href="#download" class="btn btn-outline">Get on iOS</a>
+    </div>
+    <div class="cta-banner-image" style="background-image: url('https://images.unsplash.com/photo-1606167668584-78701c57f13d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
   </div>
 
   <!-- FAQ -->
@@ -1236,13 +1299,16 @@
 
   <!-- FINAL CTA -->
   <div class="cta-banner" style="margin: 0 0 60px;">
-    <h2>🎲 Pakistan's Most Exciting Casino App is One Tap Away 🎰</h2>
-    <p>Free to download. No hidden charges. Real money winnings paid straight to your JazzCash or Easypaisa.</p>
-    <a href="#" class="btn btn-gold">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Download Pak555 APK
-    </a>
-    <a href="#" class="btn btn-outline">Play on iOS</a>
+    <div class="cta-banner-content">
+      <h2>🎲 Pakistan's Most Exciting Casino App is One Tap Away 🎰</h2>
+      <p>Free to download. No hidden charges. Real money winnings paid straight to your JazzCash or Easypaisa.</p>
+      <a href="#" class="btn btn-gold">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Pak555 APK
+      </a>
+      <a href="#" class="btn btn-outline">Play on iOS</a>
+    </div>
+    <div class="cta-banner-image" style="background-image: url('https://images.unsplash.com/photo-1596838132731-3301c3fd4317?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'); background-position: right center;"></div>
   </div>
 
 </div><!-- /container -->
