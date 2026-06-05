@@ -227,8 +227,58 @@
   .hero-stat-label { font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; }
 
   /* ---- SECTION ---- */
-  section { padding: 60px 20px; }
+  section { 
+    padding: 60px 20px; 
+    position: relative;
+    overflow: hidden;
+  }
+  section > * {
+    position: relative;
+    z-index: 1;
+  }
   section + section { border-top: 1px solid var(--border-subtle); }
+  
+  /* Giant Background Decor for Sections */
+  section::before, section::after {
+    position: absolute;
+    font-size: clamp(120px, 15vw, 220px);
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  #what-is::before { content: "🃏"; top: 10%; left: -5%; transform: rotate(-15deg); }
+  #what-is::after { content: "♥️"; bottom: 10%; right: -5%; transform: rotate(20deg); }
+  
+  #features::before { content: "🎡"; top: 20%; right: -5%; transform: rotate(-10deg); }
+  #features::after { content: "♣️"; bottom: 5%; left: -5%; transform: rotate(15deg); }
+
+  #games::before { content: "🤵"; top: 5%; left: -5%; transform: rotate(5deg); } /* Dealer */
+  #games::after { content: "🎰"; bottom: 10%; right: -5%; transform: rotate(-15deg); }
+  
+  #system-req::before { content: "♦️"; top: 10%; right: -5%; transform: rotate(25deg); }
+  
+  #download::before { content: "♠️"; top: 15%; left: -5%; transform: rotate(-20deg); }
+  #download::after { content: "🎲"; bottom: 10%; right: -5%; transform: rotate(10deg); }
+  
+  #register::before { content: "🃏"; top: 10%; right: -5%; transform: rotate(15deg); }
+  
+  #deposit::before { content: "💰"; top: 20%; left: -5%; transform: rotate(-10deg); }
+  #deposit::after { content: "💸"; bottom: 10%; right: -5%; transform: rotate(20deg); }
+  
+  #withdraw::before { content: "🏦"; top: 15%; left: -5%; transform: rotate(-5deg); }
+  
+  #update::after { content: "🔄"; bottom: 10%; right: -5%; transform: rotate(15deg); }
+  
+  #bonuses::before { content: "💎"; top: 5%; left: -5%; transform: rotate(-15deg); }
+  #bonuses::after { content: "🎁"; bottom: 5%; right: -5%; transform: rotate(10deg); }
+  
+  #safe::before { content: "🛡️"; top: 10%; right: -5%; transform: rotate(5deg); }
+  
+  #pros-cons::before { content: "⚖️"; top: 20%; left: -5%; transform: rotate(-10deg); }
+  
+  #faq::after { content: "🎱"; bottom: 10%; right: -5%; transform: rotate(15deg); }
+
   .section-label {
     font-size: 0.75rem;
     font-weight: 500;
